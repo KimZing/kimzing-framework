@@ -1,0 +1,18 @@
+group 'com.kimzing'
+version '1.0-SNAPSHOT'
+
+allprojects {
+    apply plugin: "java"
+
+    group = "org.springframework"
+    version = "0.0.1.SNAPSHOT"
+    description "no description for this project"
+
+    repositories {
+        maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }
+        maven { url 'https://maven.aliyun.com/nexus/content/repositories/jcenter' }
+    }
+    dependencies {
+        compileOnly 'org.projectlombok:lombok:1.18.12'
+    }
+}
