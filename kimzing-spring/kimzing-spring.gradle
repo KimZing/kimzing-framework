@@ -1,14 +1,19 @@
 plugins {
     id "war"
-    id 'org.gretty' version '2.2.0'
+    id 'com.github.sahara3.tomcat-runner' version '0.2.1'
 }
 
 description "模仿Spring的精简版框架"
 
-gretty {
-    httpPort 8081
+tomcat {
+    version = 9.0
+    port = 8080
+    webapp(project(':kimzing-spring')) {
+        contextPath = ''
+    }
 }
 
 dependencies {
-     providedCompile 'javax.servlet:javax.servlet-api:4.0.1'
+    providedCompile('javax.servlet:javax.servlet-api:4.0.1')
+    implementation("org.slf4j:slf4j-log4j12:1.8.0-beta2")
 }

@@ -1,4 +1,4 @@
-package com.kimzing.servlet;
+package com.kimzing.demo.servlet;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,10 +18,10 @@ public class HelloServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String contextPath = req.getContextPath();
+        String path = req.getServletPath();
         String name = req.getParameter("name");
         name = name == null ? "default" : name;
-        resp.getWriter().write(String.format("Hello %s from %s", name, contextPath));
+        resp.getWriter().write(String.format("Hello %s from %s", name, path));
     }
 
     @Override
