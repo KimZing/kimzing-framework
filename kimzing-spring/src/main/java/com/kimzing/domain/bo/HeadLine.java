@@ -1,4 +1,4 @@
-package com.kimzing.domain;
+package com.kimzing.domain.bo;
 
 import lombok.Data;
 

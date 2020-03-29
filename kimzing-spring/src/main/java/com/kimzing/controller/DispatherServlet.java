@@ -1,0 +1,42 @@
+package com.kimzing.controller;
+
+import com.kimzing.controller.frontend.HeadLineShopCategoryController;
+import com.kimzing.controller.manager.HeadLineController;
+import com.kimzing.controller.manager.ShopCategoryController;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+/**
+ * 访问控制分发.
+ *
+ * @author KimZing - kimzing@163.com
+ * @since 2020/3/30 00:00
+ */
+@WebServlet("/")
+public class DispatherServlet extends HttpServlet {
+
+    HeadLineShopCategoryController headLineShopCategoryController;
+
+    ShopCategoryController shopCategoryController;
+
+    HeadLineController headLineController;
+
+    @Override
+    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String servletPath = req.getServletPath();
+        String method = req.getMethod();
+        System.out.println(String.format("path: %s, method: %s", servletPath, method));
+        if ("/page/index".equals(servletPath) && "GET".equals(method)) {
+            headLineShopCategoryController.getMainPage(req, resp);
+        } else if ("/manager/headline".equals(servletPath) && "POST".equals(method)) {
+            headLineController.add(req, resp);
+        } else if ("/manager/shopcategory".equals(servletPath) && "POST".equals(method)) {
+            shopCategoryController.add(req, resp);
+        }
+    }
+}
