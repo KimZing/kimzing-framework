@@ -1,4 +1,4 @@
-package demo.annotation.repeatable;
+package demo.annotation.meta.retention;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -9,12 +9,9 @@ import java.lang.annotation.Target;
  * .
  *
  * @author KimZing - kimzing@163.com
- * @since 2020/4/3 00:48
+ * @since 2020/4/2 23:54
  */
-@Target(ElementType.METHOD)
-@Retention(RetentionPolicy.RUNTIME)
-public @interface MyAnnotaions {
-
-    MyAnnotation[] value();
-
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.CLASS)
+public @interface MyAnnotation2 {
 }

@@ -1,4 +1,4 @@
-package demo.annotation.targets;
+package demo.annotation.meta.retention;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -9,10 +9,9 @@ import java.lang.annotation.Target;
  * .
  *
  * @author KimZing - kimzing@163.com
- * @since 2020/4/3 11:02
+ * @since 2020/4/2 23:54
  */
-@Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.TYPE, ElementType.METHOD})
-public @interface MyAnnotation {
-    String description() default "";
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.SOURCE)
+public @interface MyAnnotation1 {
 }

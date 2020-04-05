@@ -1,4 +1,4 @@
-package demo.annotation.repeatable;
+package demo.annotation.meta.repeatable;
 
 import java.lang.annotation.*;
 

@@ -1,4 +1,4 @@
-package demo.annotation.targets;
+package demo.annotation.meta.targets;
 
 /**
  * .

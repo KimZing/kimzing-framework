@@ -1,4 +1,4 @@
-package demo.annotation.inherited;
+package demo.annotation.meta.inherited;
 
 /**
  * .
