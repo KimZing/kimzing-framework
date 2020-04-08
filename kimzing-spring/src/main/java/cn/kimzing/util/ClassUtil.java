@@ -1,10 +1,14 @@
 package cn.kimzing.util;
 
-import java.io.File;
+import java.io.IOException;
 import java.net.URL;
-import java.util.HashSet;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Collections;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Class工具类.
@@ -23,7 +27,7 @@ public class ClassUtil {
      * </p>
      *
      * @param packageName 包名，以.号分隔
-     * @return java.util.Set<java.lang.Class<?>>
+     * @return java.util.Set<java.lang.Class < ?>>
      */
     public static Set<Class<?>> getAllClassByPackage(String packageName) {
         // 1. 获取当前上下文的classLoader
@@ -34,20 +38,44 @@ public class ClassUtil {
             return null;
         }
         // 3. 过滤出file的协议资源，并筛选出所有的Class
+        Set<Class<?>> classSet = null;
         if (resource.getProtocol().equalsIgnoreCase(FILE_PROTOCOL)) {
-            Set<Class<?>> classSet = new HashSet<>();
-            File fileDir = new File(resource.getPath());
-            findClasses(classSet, fileDir, );
+            Path path = Paths.get(resource.getPath());
+            classSet = findClasses(path, packageName);
         }
-        return null;
+        return classSet;
     }
 
-    private static void findClasses(Set<Class<?>> classSet, File sourceDir, String packageName) {
-
+    private static Set<Class<?>> findClasses(Path path, String packageName) {
+        if (!Files.isDirectory(path)) {
+            return Collections.emptySet();
+        }
+        try {
+            return Files.walk(path)
+                    .map(p -> p.toString())
+                    .filter(s -> s.endsWith(".class"))
+                    .map(s -> s.replace(path.getFileSystem().getSeparator(), "."))
+                    .map(s -> s.substring(s.indexOf(packageName)))
+                    .map(s -> s.substring(0, s.lastIndexOf(".")))
+                    .map(ClassUtil::getClass)
+                    .collect(Collectors.toSet());
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
     }
 
     private static ClassLoader getClassLoader() {
         return Thread.currentThread().getContextClassLoader();
+    }
+
+    private static Class<?> getClass(String packageName) {
+        try {
+            return Class.forName(packageName);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
     }
 
 }
