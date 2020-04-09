@@ -1,7 +1,7 @@
 package demo.pattern.singleton;
 
 /**
- * 懒汉双重检查锁.
+ * 懒汉双重检查锁.无法防止反射
  *
  * @author KimZing - kimzing@163.com
  * @since 2020/4/9 20:36
