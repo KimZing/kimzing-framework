@@ -1,9 +1,9 @@
-package demo.factory.abstractf;
+package demo.pattern.factory.abstractf;
 
-import demo.factory.entity.DellKeyboard;
-import demo.factory.entity.DellMouse;
-import demo.factory.entity.Keyboard;
-import demo.factory.entity.Mouse;
+import demo.pattern.factory.entity.DellKeyboard;
+import demo.pattern.factory.entity.DellMouse;
+import demo.pattern.factory.entity.Keyboard;
+import demo.pattern.factory.entity.Mouse;
 
 /**
  * .

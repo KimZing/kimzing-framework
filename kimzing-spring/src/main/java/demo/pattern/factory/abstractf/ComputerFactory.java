@@ -1,7 +1,7 @@
-package demo.factory.abstractf;
+package demo.pattern.factory.abstractf;
 
-import demo.factory.entity.Keyboard;
-import demo.factory.entity.Mouse;
+import demo.pattern.factory.entity.Keyboard;
+import demo.pattern.factory.entity.Mouse;
 
 /**
  * 电脑相关产品生产工厂.

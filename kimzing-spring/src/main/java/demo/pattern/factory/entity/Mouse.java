@@ -1,4 +1,4 @@
-package demo.factory.entity;
+package demo.pattern.factory.entity;
 
 /**
  * 鼠标.

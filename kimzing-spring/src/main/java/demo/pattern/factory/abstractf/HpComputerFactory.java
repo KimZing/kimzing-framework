@@ -1,9 +1,9 @@
-package demo.factory.abstractf;
+package demo.pattern.factory.abstractf;
 
-import demo.factory.entity.HpKeyboard;
-import demo.factory.entity.HpMouse;
-import demo.factory.entity.Keyboard;
-import demo.factory.entity.Mouse;
+import demo.pattern.factory.entity.HpKeyboard;
+import demo.pattern.factory.entity.HpMouse;
+import demo.pattern.factory.entity.Keyboard;
+import demo.pattern.factory.entity.Mouse;
 
 /**
  * .

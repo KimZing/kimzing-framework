@@ -1,4 +1,4 @@
-package demo.factory.abstractf;
+package demo.pattern.factory.abstractf;
 
 /**
  * .

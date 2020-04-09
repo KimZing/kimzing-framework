@@ -1,4 +1,4 @@
-package demo.factory.method;
+package demo.pattern.factory.method;
 
 /**
  * .

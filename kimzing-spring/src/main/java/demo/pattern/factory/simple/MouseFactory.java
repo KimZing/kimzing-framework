@@ -1,8 +1,8 @@
-package demo.factory.simple;
+package demo.pattern.factory.simple;
 
-import demo.factory.entity.DellMouse;
-import demo.factory.entity.HpMouse;
-import demo.factory.entity.Mouse;
+import demo.pattern.factory.entity.DellMouse;
+import demo.pattern.factory.entity.HpMouse;
+import demo.pattern.factory.entity.Mouse;
 
 /**
  * 鼠标工厂.

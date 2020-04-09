@@ -1,6 +1,6 @@
-package demo.factory.method;
+package demo.pattern.factory.method;
 
-import demo.factory.entity.Mouse;
+import demo.pattern.factory.entity.Mouse;
 
 /**
  * .
