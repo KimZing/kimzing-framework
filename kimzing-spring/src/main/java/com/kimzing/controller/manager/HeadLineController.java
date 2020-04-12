@@ -1,5 +1,6 @@
 package com.kimzing.controller.manager;
 
+import cn.kimzing.core.annotation.Controller;
 import com.kimzing.domain.bo.HeadLine;
 import com.kimzing.domain.dto.ApiResult;
 import com.kimzing.service.solo.HeadLineService;
@@ -14,6 +15,7 @@ import java.util.List;
  * @author KimZing - kimzing@163.com
  * @since 2020/3/30 00:02
  */
+@Controller
 public class HeadLineController {
 
     HeadLineService headLineService;

@@ -1,6 +1,9 @@
 package cn.kimzing.util;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.io.IOException;
+import java.lang.reflect.Constructor;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -16,6 +19,7 @@ import java.util.stream.Collectors;
  * @author KimZing - kimzing@163.com
  * @since 2020/4/8 14:46
  */
+@Slf4j
 public class ClassUtil {
 
     public static final String FILE_PROTOCOL = "file";
@@ -44,6 +48,17 @@ public class ClassUtil {
             classSet = findClasses(path, packageName);
         }
         return classSet;
+    }
+
+    public static <T> T newInstance(Class<T> clazz, boolean access) {
+        try {
+            Constructor<T> declaredConstructor = clazz.getDeclaredConstructor();
+            declaredConstructor.setAccessible(access);
+            return declaredConstructor.newInstance();
+        } catch (Exception e) {
+            log.error("can not instance [{}]", clazz);
+            throw new RuntimeException(e);
+        }
     }
 
     private static Set<Class<?>> findClasses(Path path, String packageName) {

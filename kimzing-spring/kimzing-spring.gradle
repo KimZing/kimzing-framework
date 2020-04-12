@@ -7,9 +7,11 @@ description "模仿Spring的精简版框架"
 
 gretty {
     httpPort = 8080
-    servletContainer = 'tomcat8'
+    contextPath = '/kim'
+    servletContainer = 'tomcat9'
+    fileLogEnabled = false
 }
 
 dependencies {
-    providedCompile('javax.servlet:javax.servlet-api:4.0.1')
+    compileOnly 'javax.servlet:javax.servlet-api:4.0.1'
 }
