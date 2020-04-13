@@ -1,5 +1,6 @@
 package cn.kimzing.util;
 
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
@@ -33,6 +34,7 @@ public class ClassUtil {
      * @param packageName 包名，以.号分隔
      * @return java.util.Set<java.lang.Class < ?>>
      */
+    @SneakyThrows
     public static Set<Class<?>> getAllClassByPackage(String packageName) {
         // 1. 获取当前上下文的classLoader
         ClassLoader classLoader = getClassLoader();
@@ -44,7 +46,7 @@ public class ClassUtil {
         // 3. 过滤出file的协议资源，并筛选出所有的Class
         Set<Class<?>> classSet = null;
         if (resource.getProtocol().equalsIgnoreCase(FILE_PROTOCOL)) {
-            Path path = Paths.get(resource.getPath());
+            Path path = Paths.get(resource.toURI());
             classSet = findClasses(path, packageName);
         }
         return classSet;

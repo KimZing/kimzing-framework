@@ -3,6 +3,7 @@ package com.kimzing.controller;
 import com.kimzing.controller.frontend.HeadLineShopCategoryController;
 import com.kimzing.controller.manager.HeadLineController;
 import com.kimzing.controller.manager.ShopCategoryController;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,6 +18,7 @@ import java.io.IOException;
  * @author KimZing - kimzing@163.com
  * @since 2020/3/30 00:00
  */
+@Slf4j
 @WebServlet("/")
 public class DispatherServlet extends HttpServlet {
 
@@ -30,7 +32,7 @@ public class DispatherServlet extends HttpServlet {
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String servletPath = req.getServletPath();
         String method = req.getMethod();
-        System.out.println(String.format("path: %s, method: %s", servletPath, method));
+        log.info("path: [{}], method: [{}]", servletPath, method);
         if ("/page/index".equals(servletPath) && "GET".equals(method)) {
             headLineShopCategoryController.getMainPage(req, resp);
         } else if ("/manager/headline".equals(servletPath) && "POST".equals(method)) {
