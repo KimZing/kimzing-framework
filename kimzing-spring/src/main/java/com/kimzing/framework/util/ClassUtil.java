@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -95,4 +96,13 @@ public class ClassUtil {
         }
     }
 
+    public static void setFieldValue(Field field, Object bean, Object value, boolean access) {
+        field.setAccessible(access);
+        try {
+            field.set(bean, value);
+        } catch (IllegalAccessException e) {
+            log.error("set field [{}] error, value is [{}]", field, value);
+            throw new RuntimeException(e);
+        }
+    }
 }

@@ -7,4 +7,5 @@ package example.scannable;
  * @since 2020/4/14 15:01
  */
 public interface ShopService {
+
 }
