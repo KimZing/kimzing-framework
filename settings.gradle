@@ -1,4 +1,6 @@
 rootProject.name = 'kimzing-framework'
+include 'kimzing-practice'
+include 'kimzing-shop'
 include 'kimzing-spring'
 
 rootProject.children.each {project ->
