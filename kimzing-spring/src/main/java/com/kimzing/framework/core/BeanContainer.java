@@ -11,11 +11,9 @@ import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import java.lang.annotation.Annotation;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
 
 /**
  * Bean容器.
@@ -59,14 +57,18 @@ public class BeanContainer {
      */
     private boolean loaded = false;
 
+    /**
+     * 返回当前容器的加载状态
+     * @return
+     */
     public boolean isLoaded() {
         return loaded;
     }
 
-    public int size() {
-        return beanMap.size();
-    }
-
+    /**
+     * 同步初始化容器
+     * @param packageName
+     */
     public synchronized void load(String packageName) {
         if (loaded) {
             log.warn("container has been loaded!");
@@ -85,6 +87,80 @@ public class BeanContainer {
             }
         }
         loaded = true;
+    }
+
+    /**
+     * 向容器添加一个Bean
+     * @param clazz
+     * @param object
+     * @return
+     */
+    public Object addBean(Class<?> clazz, Object object) {
+        return beanMap.put(clazz, object);
+    }
+
+    /**
+     * 移除容器中的某个Bean
+     * @param clazz
+     * @return
+     */
+    public Object removeBean(Class<?> clazz) {
+        return beanMap.remove(clazz);
+    }
+
+    /**
+     * 根据Class类型获取对应的实例
+     * @param clazz
+     * @return
+     */
+    public Object getBean(Class<?> clazz) {
+        return beanMap.get(clazz);
+    }
+
+    /**
+     * 获取所有的Class对象
+     * @return
+     */
+    public Set<Class<?>> getAllClasses() {
+         return beanMap.keySet();
+    }
+
+    /**
+     * 返回所有的bean对象
+     * @return
+     */
+    public Set<?> getAllBeans() {
+        return new HashSet<>(beanMap.values());
+    }
+
+    /**
+     * 根据注解类型获取所有的Classes集合
+     * @param annotation
+     * @return
+     */
+    public Set<Class<?>> getClassesByAnnotation(Class<? extends Annotation> annotation) {
+        return getAllClasses().stream()
+                .filter(c -> c.isAnnotationPresent(annotation))
+                .collect(Collectors.toSet());
+    }
+
+    /**
+     * 根据父类获取所有的Class实例集合
+     * @param clazz
+     * @return
+     */
+    public Set<Class<?>> getClassesBySuper(Class<?> clazz) {
+        return getAllClasses().stream()
+                .filter(c -> clazz.isAssignableFrom(c) && c != clazz)
+                .collect(Collectors.toSet());
+    }
+
+    /**
+     * 当前容器的加载类的数量
+     * @return
+     */
+    public int size() {
+        return beanMap.size();
     }
 
 }

@@ -10,5 +10,5 @@ import example.scannable.ShopRepository;
  * @since 2020/4/14 15:03
  */
 @Repository
-public class ShopRepositoryImpl implements ShopRepository {
+public class ShopRedisRepositoryImpl implements ShopRepository {
 }
